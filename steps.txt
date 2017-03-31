@@ -1,0 +1,39 @@
+Install postgresql
+
+Install virtualenv
+
+Create database
+
+virtualenv env
+
+source env/bin/activate
+
+export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+
+pip install psycopg2 Flask-SQLAlchemy Flask-Migrate
+
+export APP_SETTINGS=config.DevelopmentConfig
+export FLASK_APP=app.py
+
+flask db init
+flask db migrate
+flask db upgrade
+python manage.py db upgrade
+
+
+
+
+
+
+
+Resources:
+https://realpython.com/blog/python/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+http://www.patricksoftwareblog.com/relational-database-migrations-using-flask-migrate/
+
+
+
+Files:
+app.py
+models.py
+manage.py
+migrate.py
