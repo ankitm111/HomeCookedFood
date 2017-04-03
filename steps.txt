@@ -31,6 +31,20 @@ python manage.py db upgrade
 Resources:
 https://realpython.com/blog/python/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
 http://www.patricksoftwareblog.com/relational-database-migrations-using-flask-migrate/
+https://blog.miguelgrinberg.com/post/restful-authentication-with-flask
+
+
+Request for APIs:
+1) /adduser
+curl -i -X POST -H "Content-Type: application/json" -d '{"name":"Ankit", "email_id":"ankitm111@gmail.com", "phone": "4087182413", "zipcode":"95035","password":"python"}' http://127.0.0.1:5000/homecookedfood/adduser
+
+
+2) /token
+curl -u ankitm111@gmail.com:python -i -X GET http://127.0.0.1:5000/homecookedfood/token
+
+
+
+
 
 
 
