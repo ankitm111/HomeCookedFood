@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/homecookedfood'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from models import Users, FoodServed, Comments, Ratings
+from models import Users, Tiffins, Comments, Ratings
 
 
 @app.route('/')

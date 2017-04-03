@@ -6,12 +6,12 @@ from sqlalchemy.dialects.postgresql import JSON
 class Users(db.Model):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     email_id = db.Column(db.String(40))
     password = db.Column(db.String(80))
     phone_number = db.Column(db.String(11))
     zipcode = db.Column(db.String(10))
-    dishes = db.relationship('FoodServed', backref='users',
+    dishes = db.relationship('Tiffins', backref='users',
                              lazy='dynamic')
 
     def __init__(self, email_id, password, phone_number, zipcode):
@@ -21,33 +21,35 @@ class Users(db.Model):
         self.zipcode = zipcode
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {}>'.format(self.user_id)
 
 
-#FoodServed:  (Drop all the rows with stale Date each day)
-class FoodServed(db.Model):
-    __tablename__ = 'foodserved'
+#Tiffins:  (Drop all the rows with stale Date each day)
+class Tiffins(db.Model):
+    __tablename__ = 'tiffins'
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    dishes = db.Column(JSON)
-    datetime = db.Column(db.DateTime)
+    tiffin_id = db.Column(db.Integer, primary_key=True)
+    provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    tiffin_details = db.Column(JSON)
+    date_time = db.Column(db.DateTime)
+    max_tiffins = db.Column(db.Integer)
    
-    def __init__(self, user_id, dishes, datetime):
-        self.user_id = user_id
-        self.dishes = dishes
-        self.datetime = datetime
+    def __init__(self, provider_id, tiffin_details, datetime=datetime.now(), max_tiffins=0):
+        self.provider_id = provider_id
+        self.tiffin_details = tiffin_details
+        self.date_time = date_time
+        self.max_tiffins = max_tiffins
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {}>'.format(self.tiffin_id)
  
 
 class Comments(db.Model):
     __tablename__ = 'comments'
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comment_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    commenter_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     comment = db.Column(db.String(100))
     rating = db.Column(db.Float)
     datetime = db.Column(db.DateTime)
@@ -59,21 +61,18 @@ class Comments(db.Model):
         self.datetime = datetime.now()
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {}>'.format(self.comment_id)
 
 
 class Ratings(db.Model):
     __tablename__ = 'ratings'
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    rating_id = db.Column(db.Integer, primary_key=True)
+    provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     rating = db.Column(db.Float)
     num_ratings = db.Column(db.Integer)
 
-    def __init__(self, user_id, rating, num_ratings):
-        self.user_id = user_id
+    def __init__(self, provider_id, rating, num_ratings):
+        self.provider_id = provider_id
         self.rating = rating
         self.num_ratings = num_ratings
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
