@@ -66,6 +66,40 @@ def adduser():
     return jsonify({'id' : new_user.user_id}), 201
 
 
+@app.route('/homecookedfood/addtiffin', methods=['POST'])
+@auth.login_required
+def addtiffin():
+    content = request.json
+    user_id = g.user.user_id
+
+    if (not content or not 'tiffin_details' in content):
+        abort(400)
+
+    tiffin = models.Tiffins(user_id, content['tiffin_details'], max_tiffins = content.get('max_tiffins', 0))
+
+    db.session.add(tiffin)
+    db.session.commit()
+    return jsonify({}), 201
+
+    
+@app.route('/homecookedfood/gettiffinsbyzipcode', methods=['GET'])
+@auth.login_required
+def gettiffinsbyzipcode():
+    content = request.json
+    
+    if (not content or not 'zipcode' in content):
+        abort(400)
+
+    tiffins = []
+    users = models.Users.query.filter_by(zipcode=content['zipcode'])
+    for user in users:
+        list_of_tiffins_user = user.tiffins
+        for tiffin in list_of_tiffins_user:
+            tiffins.append((tiffin.tiffin_id, tiffin.tiffin_details, tiffin.max_tiffins))        
+
+    return jsonify({'list_of_tiffins': tiffins}), 201
+
+
 @app.route('/')
 def hello():
     return "Hello World!"

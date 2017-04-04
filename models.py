@@ -66,7 +66,7 @@ class Tiffins(db.Model):
     date_time = db.Column(db.DateTime)
     max_tiffins = db.Column(db.Integer)
    
-    def __init__(self, provider_id, tiffin_details, datetime=datetime.now(), max_tiffins=0):
+    def __init__(self, provider_id, tiffin_details, date_time=datetime.now(), max_tiffins=0):
         self.provider_id = provider_id
         self.tiffin_details = tiffin_details
         self.date_time = date_time
