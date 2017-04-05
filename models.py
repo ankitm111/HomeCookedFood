@@ -21,14 +21,23 @@ class Users(db.Model):
     password_hash = db.Column(db.String(128))
     phone_number = db.Column(db.String(11))
     zipcode = db.Column(db.String(10))
+    rating = db.Column(db.Float)
+    num_ratings = db.Column(db.Integer)
+    is_provider = db.Column(db.Boolean)
     tiffins = db.relationship('Tiffins', backref='users',
                               lazy='dynamic')
+    comments = db.relationship('Comments', backref='users',
+                               lazy='dynamic')
+
 
     def __init__(self, name, email_id, phone_number, zipcode):
         self.name = name
         self.email_id = email_id
         self.phone_number = phone_number
         self.zipcode = zipcode
+        self.rating = 0.0
+        self.num_ratings = 0
+        self.is_provider = False
 
     def __repr__(self):
         return '<id {}>'.format(self.user_id)
@@ -42,6 +51,15 @@ class Users(db.Model):
     def generate_auth_token(self, expiration = 60000):
         s = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
         return s.dumps({ 'user_id': self.user_id })
+
+    def make_provider(self):
+        self.is_provider = True
+
+    def udpate_rating(self, rating):
+        rat = self.rating * self.num_ratings
+        rat = rat + rating
+        self.num_ratings = self.num_ratings + 1
+        self.rating = float(rat / self.num_ratings)
 
     @staticmethod
     def verify_auth_token(token):
@@ -64,12 +82,15 @@ class Tiffins(db.Model):
     provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     tiffin_details = db.Column(JSON)
     date_time = db.Column(db.DateTime)
+    price_per_tiffin = db.Column(db.Integer)
     max_tiffins = db.Column(db.Integer)
    
-    def __init__(self, provider_id, tiffin_details, date_time=datetime.now(), max_tiffins=0):
+    def __init__(self, provider_id, tiffin_details,
+                 price_per_tiffin, max_tiffins=0):
         self.provider_id = provider_id
         self.tiffin_details = tiffin_details
-        self.date_time = date_time
+        self.date_time = datetime.now()
+        self.price_per_tiffin = price_per_tiffin
         self.max_tiffins = max_tiffins
 
     def __repr__(self):
@@ -86,7 +107,7 @@ class Comments(db.Model):
     rating = db.Column(db.Float)
     datetime = db.Column(db.DateTime)
 
-    def __init__(self, user_id, commenter_id, comment='', rating=5):
+    def __init__(self, user_id, commenter_id, comment='', rating=0):
         self.user_id = user_id
         self.commenter_id = commenter_id
         self.comment = comment
@@ -94,17 +115,3 @@ class Comments(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.comment_id)
-
-
-class Ratings(db.Model):
-    __tablename__ = 'ratings'
-
-    rating_id = db.Column(db.Integer, primary_key=True)
-    provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    rating = db.Column(db.Float)
-    num_ratings = db.Column(db.Integer)
-
-    def __init__(self, provider_id, rating, num_ratings):
-        self.provider_id = provider_id
-        self.rating = rating
-        self.num_ratings = num_ratings

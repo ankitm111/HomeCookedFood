@@ -72,14 +72,40 @@ def addtiffin():
     content = request.json
     user_id = g.user.user_id
 
-    if (not content or not 'tiffin_details' in content):
+    if (not content or not 'tiffin_details' in content or not price_per_tiffin in content):
         abort(400)
 
-    tiffin = models.Tiffins(user_id, content['tiffin_details'], max_tiffins = content.get('max_tiffins', 0))
+    tiffin = models.Tiffins(user_id, content['tiffin_details'], content['price_per_tiffin'], max_tiffins = content.get('max_tiffins', 0))
+
+    g.user.make_provider() 
 
     db.session.add(tiffin)
     db.session.commit()
     return jsonify({}), 201
+
+
+@app.route('/homecookedfood/getprovidersbyzipcode', methods=['GET'])
+@auth.login_required
+def getprovidersbyzipcode():
+    content = request.json
+    
+    if (not content or not 'zipcode' in content):
+        abort(400)
+
+    users = models.Users.query.filter_by(zipcode=content['zipcode'], is_provider=True)
+    return jsonify({'list_of_providers': users}), 201
+
+
+@app.route('/homecookedfood/gettiffinsbyprovider', methods=['GET'])
+@auth.login_required
+def gettiffinsbyprovider():
+    content = request.json
+    
+    if (not content or not 'provider_id' in content):
+        abort(400)
+
+    user = models.Users.query.filter_by(user_id=content['provider_id']).first()
+    return jsonify({'tiffins_by_provider': user.tiffins}), 201
 
     
 @app.route('/homecookedfood/gettiffinsbyzipcode', methods=['GET'])
@@ -95,15 +121,33 @@ def gettiffinsbyzipcode():
     for user in users:
         list_of_tiffins_user = user.tiffins
         for tiffin in list_of_tiffins_user:
-            tiffins.append((tiffin.tiffin_id, tiffin.tiffin_details, tiffin.max_tiffins))        
+            tiffins.append(tiffin)
 
     return jsonify({'list_of_tiffins': tiffins}), 201
 
 
-@app.route('/')
-def hello():
-    return "Hello World!"
+@app.route('/homecookedfood/givecommenttoprovider', methods=['POST'])
+@auth.login_required
+def givecommenttoprovider():
+    content = request.json
+    
+    if (not content or not 'provider_id' in content):
+        abort(400)
 
+    if (not 'comment' in content and not 'rating' in content):
+        abort(400)
+
+    cmt = content.get('comment', '')
+    rating = content.get('rating', 0)
+
+    comment = models.Comments(content['provider_id'], g.user.user_id,
+                              cmt, rating, datetime.now())
+
+    user = models.Users.query.filter_by(user_id=content['provider_id']).first()
+    user.update_rating(rating) 
+      
+    db.session.add(comment)
+    db.session.commit()
 
 
 if __name__ == '__main__':
