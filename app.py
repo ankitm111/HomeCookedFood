@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, abort, request, g
+from flask import Flask, jsonify, abort, request, g, make_response
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -15,8 +15,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 auth = HTTPBasicAuth()
 
-#from models import Users, Tiffins, Comments, Ratings
-# TODO: Fix CICRULAR IMPORTS
+#from models import Users, Meal, Comments, Ratings
+# TODO: Fix CICRULAR IMPORTS, COMMON FLASK PROBLEM
 import models
 
 
@@ -38,14 +38,14 @@ def verify_password(email_id_or_token, password):
     return True
 
 
-@app.route('/homecookedfood/token', methods=['GET'])
+@app.route('/hcf/token', methods=['GET'])
 @auth.login_required
 def get_auth_token():
     token = g.user.generate_auth_token()
     return jsonify({'token': token.decode('ascii')}) 
 
 
-@app.route('/homecookedfood/adduser', methods=['POST'])
+@app.route('/hcf/adduser', methods=['POST'])
 def adduser():
     content = request.json
     if (not content or not 'name' in content or not 'email_id' in content
@@ -66,25 +66,25 @@ def adduser():
     return jsonify({'id' : new_user.user_id}), 201
 
 
-@app.route('/homecookedfood/addtiffin', methods=['POST'])
+@app.route('/hcf/addmeal', methods=['POST'])
 @auth.login_required
-def addtiffin():
+def addmeal():
     content = request.json
     user_id = g.user.user_id
 
-    if (not content or not 'tiffin_details' in content or not price_per_tiffin in content):
+    if (not content or not 'meal_details' in content or not price_per_meal in content):
         abort(400)
 
-    tiffin = models.Tiffins(user_id, content['tiffin_details'], content['price_per_tiffin'], max_tiffins = content.get('max_tiffins', 0))
+    meal = models.Meal(user_id, content['meal_details'], content['price_per_meal'], max_meals = content.get('max_meals', 0))
 
     g.user.make_provider() 
 
-    db.session.add(tiffin)
+    db.session.add(meal)
     db.session.commit()
     return jsonify({}), 201
 
 
-@app.route('/homecookedfood/getprovidersbyzipcode', methods=['GET'])
+@app.route('/hcf/getprovidersbyzipcode', methods=['GET'])
 @auth.login_required
 def getprovidersbyzipcode():
     content = request.json
@@ -96,37 +96,37 @@ def getprovidersbyzipcode():
     return jsonify({'list_of_providers': users}), 201
 
 
-@app.route('/homecookedfood/gettiffinsbyprovider', methods=['GET'])
+@app.route('/hcf/getmealsbyprovider', methods=['GET'])
 @auth.login_required
-def gettiffinsbyprovider():
+def getmealsbyprovider():
     content = request.json
     
     if (not content or not 'provider_id' in content):
         abort(400)
 
     user = models.Users.query.filter_by(user_id=content['provider_id']).first()
-    return jsonify({'tiffins_by_provider': user.tiffins}), 201
+    return jsonify({'meals_by_provider': user.meals}), 201
 
     
-@app.route('/homecookedfood/gettiffinsbyzipcode', methods=['GET'])
+@app.route('/hcf/getmealsbyzipcode', methods=['GET'])
 @auth.login_required
-def gettiffinsbyzipcode():
+def getmealsbyzipcode():
     content = request.json
     
     if (not content or not 'zipcode' in content):
         abort(400)
 
-    tiffins = []
+    meals = []
     users = models.Users.query.filter_by(zipcode=content['zipcode'])
     for user in users:
-        list_of_tiffins_user = user.tiffins
-        for tiffin in list_of_tiffins_user:
-            tiffins.append(tiffin)
+        list_of_meals_user = user.meals
+        for meal in list_of_meals_user:
+            meals.append(meal)
 
-    return jsonify({'list_of_tiffins': tiffins}), 201
+    return jsonify({'list_of_meals': meals}), 201
 
 
-@app.route('/homecookedfood/givecommenttoprovider', methods=['POST'])
+@app.route('/hcf/givecommenttoprovider', methods=['POST'])
 @auth.login_required
 def givecommenttoprovider():
     content = request.json
