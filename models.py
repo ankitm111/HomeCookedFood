@@ -58,11 +58,20 @@ class Users(db.Model):
     def make_provider(self):
         self.is_provider = True
 
-    def udpate_rating(self, rating):
-        rat = self.rating * self.num_ratings
+    def update_rating(self, rating):
+        rat = float(self.rating * self.num_ratings)
         rat = rat + rating
         self.num_ratings = self.num_ratings + 1
         self.rating = float(rat / self.num_ratings)
+
+    def __json__(self):
+        return dict(username=self.username,
+                    name=self.name,
+                    email_id=self.email_id,
+                    phone_number=self.phone_number,
+                    zipcode=self.zipcode,
+                    rating=self.rating,
+                    num_ratings=self.num_ratings)
 
     @staticmethod
     def verify_auth_token(token):

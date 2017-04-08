@@ -35,17 +35,19 @@ https://blog.miguelgrinberg.com/post/restful-authentication-with-flask
 
 
 Request for APIs:
-1) /adduser
-curl -i -X POST -H "Content-Type: application/json" -d '{"name":"Ankit", "email_id":"ankitm111@gmail.com", "phone": "4087182413", "zipcode":"95035","password":"python"}' http://127.0.0.1:5000/homecookedfood/adduser
+1) /hcf/users/ankitm112
+curl -i -X POST -H "Content-Type: application/json" -d '{"name":"Ankit", "email_id":"ankitm111@yahoo.com", "phone": "4087182413", "zipcode":"95035","password":"python"}' http://127.0.0.1:5000/hcf/users/ankitm112
 
-
-2) /token
+2) /hcf/token
 curl -u ankitm111@gmail.com:python -i -X GET http://127.0.0.1:5000/homecookedfood/token
 
-3) /addtiffin
+3) /hcf/users/getcurrentuser
+curl -u ankitm112:python -i -X GET http://127.0.0.1:5000/hcf/users/getcurrentuser
+
+4) /addtiffin
 curl -u ankitm111@gmail.com:python -i -X POST -H "Content-Type: application/json" -d '{"tiffin_details" : {"chole":2, "bhature":2}}' http://127.0.0.1:5000/homecookedfood/addtiffin
 
-4) /getmealsbyzipcode
+5) /getmealsbyzipcode
 curl -u ankitm111@gmail.com:python -i -X GET -H "Content-Type: application/json" -d '{"zipcode" : "95035"}' http://127.0.0.1:5000/homecookedfood/getmealsbyzipcode
 
 
