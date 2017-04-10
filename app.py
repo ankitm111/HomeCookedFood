@@ -1,7 +1,9 @@
 import os
 import json
-from flask import Flask, jsonify, abort, request, g, make_response
 from datetime import datetime
+from functools import wraps
+
+from flask import Flask, jsonify, abort, request, g, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_httpauth import HTTPBasicAuth
@@ -19,6 +21,25 @@ auth = HTTPBasicAuth()
 #from models import Users, Meal, Comments, Ratings
 # TODO: Fix CICRULAR IMPORTS, COMMON FLASK PROBLEM
 import models
+
+
+def validate_json(*variable_args):
+    """
+    Decorator used to do basic validation of the incoming request. It simply
+    checks if the passed arguments are present in request.json. This can be
+    used to avoid repetitive if checks.
+    """
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if not request.json:
+                abort(400)
+            for va in variable_args:
+                if va not in request.json:
+                    abort(400)
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
 
 
 @app.errorhandler(404)
@@ -47,13 +68,9 @@ def get_auth_token():
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
+@validate_json('name', 'email_id', 'password', 'phone', 'zipcode')
 def adduser(username):
     content = request.json
-    if (not content or not 'name' in content or not 'email_id' in content
-        or not 'password' in content or not 'phone' in content or
-        not 'zipcode' in content):
-        abort(400)
-
     user = models.Users.query.filter((models.Users.username == username) |
         (models.Users.email_id == content['email_id'])).first()
     if user is not None:
@@ -78,12 +95,10 @@ def getcurrentuser():
 
 @app.route('/hcf/addmeal', methods=['POST'])
 @auth.login_required
+@validate_json('meal_details', 'price_per_meal')
 def addmeal():
     content = request.json
     user_id = g.user.user_id
-
-    if (not content or not 'meal_details' in content or not price_per_meal in content):
-        abort(400)
 
     meal = models.Meal(user_id, content['meal_details'],
                        content['price_per_meal'],
@@ -98,12 +113,9 @@ def addmeal():
 
 @app.route('/hcf/getprovidersbyzipcode', methods=['GET'])
 @auth.login_required
+@validate_json('zipcode')
 def getprovidersbyzipcode():
     content = request.json
-    
-    if (not content or not 'zipcode' in content):
-        abort(400)
-
     users = models.Users.query.filter_by(zipcode=content['zipcode'],
                                          is_provider=True)
     return jsonify({'list_of_providers': users}), 201
@@ -111,24 +123,18 @@ def getprovidersbyzipcode():
 
 @app.route('/hcf/getmealsbyprovider', methods=['GET'])
 @auth.login_required
+@validate_json('provider_id')
 def getmealsbyprovider():
     content = request.json
-    
-    if (not content or not 'provider_id' in content):
-        abort(400)
-
     user = models.Users.query.filter_by(user_id=content['provider_id']).first()
     return jsonify({'meals_by_provider': user.meals}), 201
 
     
 @app.route('/hcf/getmealsbyzipcode', methods=['GET'])
 @auth.login_required
+@validate_json('zipcode')
 def getmealsbyzipcode():
     content = request.json
-    
-    if (not content or not 'zipcode' in content):
-        abort(400)
-
     meals = []
     users = models.Users.query.filter_by(zipcode=content['zipcode'])
     for user in users:
@@ -141,14 +147,9 @@ def getmealsbyzipcode():
 
 @app.route('/hcf/givecommenttoprovider', methods=['POST'])
 @auth.login_required
+@validate_json('provider_id', 'comment', 'rating')
 def givecommenttoprovider():
     content = request.json
-    
-    if (not content or not 'provider_id' in content):
-        abort(400)
-
-    if (not 'comment' in content and not 'rating' in content):
-        abort(400)
 
     cmt = content.get('comment', '')
     rating = content.get('rating', 0)
