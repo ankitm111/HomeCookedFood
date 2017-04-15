@@ -1,5 +1,4 @@
 import os
-import json
 from datetime import datetime
 from functools import wraps
 from collections import namedtuple
@@ -20,7 +19,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 auth = HTTPBasicAuth()
 
-#from models import Users, Meal, Comments, Ratings
+# from models import Users, Meal, Comments, Ratings
 # TODO: Fix CICRULAR IMPORTS, COMMON FLASK PROBLEM
 import models
 
@@ -66,7 +65,7 @@ def verify_password(username_or_token, password):
 @auth.login_required
 def get_auth_token():
     token = g.user.generate_auth_token()
-    return jsonify({'token': token.decode('ascii')}) 
+    return jsonify({'token': token.decode('ascii')})
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
@@ -74,7 +73,8 @@ def get_auth_token():
                'latitude')
 def adduser(username):
     content = request.json
-    user = models.Users.query.filter((models.Users.username == username) |
+    user = models.Users.query.filter(
+        (models.Users.username == username) |
         (models.Users.email_id == content['email_id'])).first()
     if user is not None:
         # existing user
@@ -87,13 +87,13 @@ def adduser(username):
     new_user.hash_password(content.get('password'))
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'id' : new_user.user_id}), 201
+    return jsonify({'id': new_user.user_id}), 201
 
 
 @app.route('/hcf/users/getcurrentuser', methods=['GET'])
 @auth.login_required
 def getcurrentuser():
-    return jsonify({'user' : g.user.__json__()}), 201
+    return jsonify({'user': g.user.__json__()}), 201
 
 
 @app.route('/hcf/addmeal', methods=['POST'])
@@ -104,7 +104,7 @@ def addmeal():
     user_id = g.user.user_id
     meal = models.Meal(user_id, content['meal_details'],
                        content['price_per_meal'],
-                       max_meals = content.get('max_meals', 0))
+                       max_meals=content.get('max_meals', 0))
     g.user.make_provider()
     db.session.add(meal)
     db.session.commit()
@@ -173,7 +173,7 @@ def getmealsbyprovider():
     user = models.Users.query.filter_by(user_id=content['provider_id']).first()
     return jsonify({'meals_by_provider': user.meals}), 201
 
-    
+
 @app.route('/hcf/getmealsbyzipcode', methods=['GET'])
 @auth.login_required
 @validate_json('zipcode')
@@ -193,7 +193,6 @@ def getmealsbyzipcode():
 @validate_json('provider_id', 'comment', 'rating')
 def givecommenttoprovider():
     content = request.json
-    cmt = content.get('comment', '')
     rating = content.get('rating', 0)
     comment = models.Comments(content['provider_id'], g.user.user_id,
                               content.get('comment', ''),

@@ -1,5 +1,5 @@
-import os
-import random, string
+import random
+import string
 from app import db, app
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
@@ -9,7 +9,7 @@ from sqlalchemy.dialects.postgresql import JSON
 
 
 def randomiamgename(length=20):
-   return ''.join(random.choice(string.lowercase) for i in range(length))
+    return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
 class Users(db.Model):
@@ -29,10 +29,11 @@ class Users(db.Model):
     latitude = db.Column(db.Float)
     meals = db.relationship('Meal', backref='provider',
                             lazy='dynamic')
-    # TODO: See how to add comments as relationship here
-    #comments = db.relationship('Comments', backref='user',
-    #                           lazy='dynamic')
-
+    '''
+    TODO: See how to add comments as relationship here
+    comments = db.relationship('Comments', backref='user',
+                               lazy='dynamic')
+    '''
 
     def __init__(self, username, name, email_id, phone_number, zipcode,
                  longitude, latitude):
@@ -56,9 +57,9 @@ class Users(db.Model):
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_hash)
 
-    def generate_auth_token(self, expiration = 60000):
-        s = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
-        return s.dumps({ 'user_id': self.user_id })
+    def generate_auth_token(self, expiration=60000):
+        s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
+        return s.dumps({'user_id': self.user_id})
 
     def make_provider(self):
         self.is_provider = True
@@ -86,14 +87,14 @@ class Users(db.Model):
         try:
             data = s.loads(token)
         except SignatureExpired:
-            return None # valid token, but expired
+            return None  # valid token, but expired
         except BadSignature:
-            return None # invalid token
+            return None  # invalid token
         user = Users.query.filter_by(user_id=data['user_id']).first()
         return user
 
 
-#Meal:  (Drop all the rows with stale Date each day)
+# Meal:  (Drop all the rows with stale Date each day)
 class Meal(db.Model):
     __tablename__ = 'meal'
 
@@ -104,7 +105,7 @@ class Meal(db.Model):
     max_meals = db.Column(db.Integer)
     tags = db.Column(db.String(50))
     date_time = db.Column(db.DateTime)
-   
+
     def __init__(self, provider_id, meal_details,
                  price_per_meal, max_meals=0, tags='',
                  date_time=datetime.now()):
@@ -117,7 +118,7 @@ class Meal(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.meal_id)
- 
+
 
 class Comments(db.Model):
     __tablename__ = 'comments'
