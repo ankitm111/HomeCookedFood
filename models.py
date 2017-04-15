@@ -25,14 +25,17 @@ class Users(db.Model):
     rating = db.Column(db.Float)
     num_ratings = db.Column(db.Integer)
     is_provider = db.Column(db.Boolean)
+    longitude = db.Column(db.Float)
+    latitude = db.Column(db.Float)
     meals = db.relationship('Meal', backref='provider',
-                              lazy='dynamic')
+                            lazy='dynamic')
     # TODO: See how to add comments as relationship here
     #comments = db.relationship('Comments', backref='user',
     #                           lazy='dynamic')
 
 
-    def __init__(self, username, name, email_id, phone_number, zipcode):
+    def __init__(self, username, name, email_id, phone_number, zipcode,
+                 longitude, latitude):
         self.username = username
         self.name = name
         self.email_id = email_id
@@ -41,6 +44,8 @@ class Users(db.Model):
         self.rating = 0.0
         self.num_ratings = 0
         self.is_provider = False
+        self.longitude = longitude
+        self.latitude = latitude
 
     def __repr__(self):
         return '<id {}>'.format(self.user_id)
@@ -71,7 +76,9 @@ class Users(db.Model):
                     phone_number=self.phone_number,
                     zipcode=self.zipcode,
                     rating=self.rating,
-                    num_ratings=self.num_ratings)
+                    num_ratings=self.num_ratings,
+                    longitude=self.longitude,
+                    latitude=self.latitude)
 
     @staticmethod
     def verify_auth_token(token):

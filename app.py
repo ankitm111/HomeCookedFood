@@ -2,9 +2,11 @@ import os
 import json
 from datetime import datetime
 from functools import wraps
+from collections import namedtuple
 
 from flask import Flask, jsonify, abort, request, g, make_response
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from flask_migrate import Migrate
 from flask_httpauth import HTTPBasicAuth
 
@@ -68,7 +70,8 @@ def get_auth_token():
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
-@validate_json('name', 'email_id', 'password', 'phone', 'zipcode')
+@validate_json('name', 'email_id', 'password', 'phone', 'zipcode', 'longitude',
+               'latitude')
 def adduser(username):
     content = request.json
     user = models.Users.query.filter((models.Users.username == username) |
@@ -77,11 +80,11 @@ def adduser(username):
         # existing user
         abort(400)
 
-    new_user = models.Users(username, content['name'],
-                            content['email_id'], content.get('phone'),
-                            content.get('zipcode'))
-    new_user.hash_password(content['password'])
-
+    new_user = models.Users(username, content.get('name'),
+                            content.get('email_id'), content.get('phone'),
+                            content.get('zipcode'), content.get('longitude'),
+                            content.get('latitude'))
+    new_user.hash_password(content.get('password'))
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'id' : new_user.user_id}), 201
@@ -99,13 +102,10 @@ def getcurrentuser():
 def addmeal():
     content = request.json
     user_id = g.user.user_id
-
     meal = models.Meal(user_id, content['meal_details'],
                        content['price_per_meal'],
                        max_meals = content.get('max_meals', 0))
-
-    g.user.make_provider() 
-
+    g.user.make_provider()
     db.session.add(meal)
     db.session.commit()
     return jsonify({}), 201
@@ -119,6 +119,50 @@ def getprovidersbyzipcode():
     users = models.Users.query.filter_by(zipcode=content['zipcode'],
                                          is_provider=True)
     return jsonify({'list_of_providers': users}), 201
+
+
+@app.route('/hcf/getprovidersbycoordinates', methods=['GET'])
+@auth.login_required
+@validate_json('longitude', 'latitude')
+def getprovidersbycoordinates():
+    """
+    This logic is shamelessly copied from the following URL -
+    http://www.plumislandmedia.net/mysql/haversine-mysql-nearest-loc/
+    """
+    content = request.json
+    longitude = content['longitude']
+    latitude = content['latitude']
+    radius = '50.0'
+    distance_unit = '69.0'
+    limit = '15'
+
+    sql = '''
+    SELECT u.name, u.phone_number, u.rating, u.num_ratings, u.email_id,
+           p.distance_unit
+               * DEGREES(ACOS(COS(RADIANS(p.latpoint))
+               * COS(RADIANS(u.latitude))
+               * COS(RADIANS(p.longpoint) - RADIANS(u.longitude))
+               + SIN(RADIANS(p.latpoint))
+               * SIN(RADIANS(u.latitude)))) AS distance_in_miles
+    FROM users as u
+    JOIN (SELECT %s AS latpoint, %s AS longpoint,
+          %s AS radius, %s AS distance_unit) AS p ON 1=1
+    WHERE u.is_provider = 'true'
+    AND u.latitude
+        BETWEEN p.latpoint - (p.radius / p.distance_unit)
+            AND p.latpoint + (p.radius / p.distance_unit)
+        AND u.longitude BETWEEN
+        p.longpoint - (p.radius / (p.distance_unit * COS(RADIANS(p.latpoint))))
+        AND p.longpoint +
+        (p.radius / (p.distance_unit * COS(RADIANS(p.latpoint))))
+    ORDER BY distance_in_miles
+    LIMIT %s
+    ''' % (latitude, longitude, radius, distance_unit, limit)
+
+    result = db.engine.execute(text(sql))
+    record = namedtuple('record', result.keys())
+    records = [record(*r) for r in result.fetchall()]
+    return jsonify({'list_of_providers': records}), 201
 
 
 @app.route('/hcf/getmealsbyprovider', methods=['GET'])
@@ -141,7 +185,6 @@ def getmealsbyzipcode():
         list_of_meals_user = user.meals
         for meal in list_of_meals_user:
             meals.append(meal)
-
     return jsonify({'list_of_meals': meals}), 201
 
 
@@ -150,17 +193,13 @@ def getmealsbyzipcode():
 @validate_json('provider_id', 'comment', 'rating')
 def givecommenttoprovider():
     content = request.json
-
     cmt = content.get('comment', '')
     rating = content.get('rating', 0)
-
     comment = models.Comments(content['provider_id'], g.user.user_id,
                               content.get('comment', ''),
                               int(content.get('rating', 0)), datetime.now())
-
     user = models.Users.query.filter_by(user_id=content['provider_id']).first()
-    user.update_rating(rating) 
-      
+    user.update_rating(rating)
     db.session.add(comment)
     db.session.commit()
 
