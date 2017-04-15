@@ -50,10 +50,46 @@ curl -u ankitm111@gmail.com:python -i -X POST -H "Content-Type: application/json
 5) /getmealsbyzipcode
 curl -u ankitm111@gmail.com:python -i -X GET -H "Content-Type: application/json" -d '{"zipcode" : "95035"}' http://127.0.0.1:5000/homecookedfood/getmealsbyzipcode
 
+6)
+The database contains 3 providers. Onkar and Ankit are in San Jose. Sooraj is
+located in Seattle.
 
+homecookedfood=# select * from users;
+ user_id |  name  |      email_id       |                                                      password_hash                                                       | phone_number | zipcode | is_provider | num_ratings | rating | username  | latitude  |  longitude
+---------+--------+---------------------+--------------------------------------------------------------------------------------------------------------------------+--------------+---------+-------------+-------------+--------+-----------+-----------+-------------
+       1 | Ankit  | ankitm111@yahoo.com | $6$rounds=656000$W3Du/bJ9ajg0QsIH$MY2ObA.DYz/rohkv0/mIVvsrlOFaDFtLECjP1/GUL6ekpwBHo8t.RCLBIxRPS.6oywVQCSm/lRbYOMs5Q5uqF. | 4087182413   | 95035   | t           |           0 |      0 | ankitm112 | 37.403812 | -121.932192
+       3 | Sooraj | sooraj@yahoo.com    | $6$rounds=656000$lpTrfqFIhHdKOCya$/ljgQ8m0kCAGBwpj.OZNOSeGLADANOlIbjt8hOXmCheDLXMwGhL3zSlcRv3296BSIsABcJFJMZX2jMSJvyASq. | 4087182413   | 95035   | t           |           0 |      0 | sooraj    | 47.606209 | -122.332071
+       2 | onkar  | onkar@yahoo.com     | $6$rounds=656000$MntRkAOUx.nfh9oi$n6FHpmsrcVcjRVj2k6akF3Kc.xP.wcMnpDr34KxiejFfP2Ib4QdYToyjCcN3HDBoJS2zMxYtYjOacIvghCVCy. | 4087182413   | 95035   | t           |           0 |      0 | onkar     | 37.406835 | -121.942035
+(3 rows)
 
-Files:
-app.py
-models.py
-manage.py
-migrate.py
+$ curl -u "ankitm112:python" -i -X GET -H "Content-Type: application/json" -d '{"longitude":"-121.899574", "latitude":"37.432334"}' http://127.0.0.1:5000/hcf/getprovidersbycoordinates
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 279
+Server: Werkzeug/0.12.1 Python/3.5.1
+Date: Sat, 15 Apr 2017 20:48:34 GMT
+
+{
+  "list_of_providers": [
+    [
+      "Ankit",
+      "4087182413",
+      0.0,
+      0,
+      "ankitm111@yahoo.com",
+      2.65862604646254
+    ],
+    [
+      "onkar",
+      "4087182413",
+      0.0,
+	  0,
+	  "onkar@yahoo.com",
+	  2.91718066530425
+	 ]
+  ]
+}
+
+The coordinates passed to GET query are of Milpitas, CA. As expected, the
+results of San Jose, CA are given. There is a hardcoded limit of 50 miles radius
+and since Seattle does not fall in that range, Sooraj is not in the result.
