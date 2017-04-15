@@ -42,3 +42,6 @@ fi
 flask db migrate
 flask db upgrade
 python manage.py db upgrade
+
+echo "Starting flask server..."
+$VIRTUALENV_NAME/bin/flask run
