@@ -1,0 +1,12 @@
+* {
+  .border-radius(0) !important;
+}
+
+#field_dishname* {
+    margin-bottom:20px;
+}
+
+
+#field_dishquantity* {
+    margin-bottom:20px;
+}

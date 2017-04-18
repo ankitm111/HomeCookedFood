@@ -1,4 +1,8 @@
 import os
+import json
+import logging
+from logging.handlers import RotatingFileHandler
+
 from datetime import datetime
 from functools import wraps
 from collections import namedtuple
@@ -8,12 +12,17 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from flask_migrate import Migrate
 from flask_httpauth import HTTPBasicAuth
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/homecookedfood'
 app.config['SECRET_KEY'] = 'AnkitHarshOnkar'
+
+# allow cross domain requests to succeed
+CORS(app)
+
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -65,7 +74,7 @@ def verify_password(username_or_token, password):
 @auth.login_required
 def get_auth_token():
     token = g.user.generate_auth_token()
-    return jsonify({'token': token.decode('ascii')})
+    return jsonify({'token': token.decode('ascii')}), 200
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
@@ -203,4 +212,4 @@ def givecommenttoprovider():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=True)
