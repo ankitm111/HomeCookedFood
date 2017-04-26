@@ -69,8 +69,7 @@ def get_auth_token():
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
-@validate_json('name', 'email_id', 'password', 'phone', 'zipcode', 'longitude',
-               'latitude')
+@validate_json('name', 'email_id', 'password', 'phone', 'zipcode')
 def adduser(username):
     content = request.json
     user = models.Users.query.filter(
