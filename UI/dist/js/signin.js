@@ -15,6 +15,7 @@ function login() {
 			alert("Inside success");
 			localStorage.setItem("logintoken", data["token"]);
 			alert(localStorage.getItem("logintoken"));
+			window.location.href="homepage.html";
 		},
 		error: function(xhr,err){
  		   alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
