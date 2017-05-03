@@ -1,5 +1,6 @@
 import random
 import string
+import datetime
 from app import db, app
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
@@ -99,25 +100,55 @@ class Meal(db.Model):
     __tablename__ = 'meal'
 
     meal_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
     provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    meal_details = db.Column(JSON)
-    price_per_meal = db.Column(db.Integer)
-    max_meals = db.Column(db.Integer)
-    tags = db.Column(db.String(50))
+    price = db.Column(db.Integer)
+    max_count = db.Column(db.Integer)
     date_time = db.Column(db.DateTime)
+    items = db.relationship('MealItems', lazy='dynamic')
+    tags = db.relationship('MealTags', lazy='dynamic')
 
-    def __init__(self, provider_id, meal_details,
-                 price_per_meal, max_meals=0, tags='',
-                 date_time=datetime.now()):
+    def __init__(self, name, provider_id, price, max_count,
+                 date_time):
         self.provider_id = provider_id
-        self.meal_details = meal_details
-        self.price_per_meal = price_per_meal
-        self.max_meals = max_meals
-        self.tags = tags
-        self.date_time = date_time
+        self.name = name
+        self.price = price
+        self.max_count = max_count
+        self.date_time = datetime.strptime(date_time,
+                                           '%Y%m%d-%H%M%S')
 
     def __repr__(self):
-        return '<id {}>'.format(self.meal_id)
+        return '<name {}>'.format(self.name)
+
+
+class MealItems(db.Model):
+    __tablename__ = 'mealitems'
+    item_name = db.Column(db.String(128), primary_key=True)
+    meal_id = db.Column(db.Integer, db.ForeignKey('meal.meal_id'),
+                        primary_key=True)
+    item_count = db.Column(db.Integer)
+
+    def __init__(self, item_name, meal_id, item_count):
+        self.item_name = item_name
+        self.meal_id = meal_id
+        self.item_count = item_count
+
+    def __repr__(self):
+        return '<item_name {}>'.format(self.item_name)
+
+class MealTags(db.Model):
+    __tablename__ = 'mealtags'
+    # XXX Maybe we need a separate tag table and this should be tag id.
+    tag_name = db.Column(db.String(128), primary_key=True)
+    meal_id = db.Column(db.Integer, db.ForeignKey('meal.meal_id'),
+                        primary_key=True)
+
+    def __init__(self, tag_name, meal_id):
+        self.tag_name = tag_name
+        self.meal_id = meal_id
+
+    def __repr__(self):
+        return '<tag_name {}>'.format(self.tag_name)
 
 
 class Comments(db.Model):

@@ -104,19 +104,55 @@ def getcurrentuser():
     return jsonify({'user': g.user.__json__()}), 201
 
 
-@app.route('/hcf/addmeal', methods=['POST'])
+@app.route('/hcf/users/provider/meals/<string:mealname>', methods=['POST'])
 @auth.login_required
-@validate_json('meal_details', 'price_per_meal')
-def addmeal():
+@validate_json('price', 'tagnames', 'max_count', 'meal_items', 'date_time')
+def createmeal(mealname):
     content = request.json
     user_id = g.user.user_id
-    meal = models.Meal(user_id, content['meal_details'],
-                       content['price_per_meal'],
-                       max_meals=content.get('max_meals', 0))
-    g.user.make_provider()
+    meal = models.Meal(mealname, user_id, content['price'],
+                       max_count=content['max_count'],
+                       date_time=content['date_time'])
     db.session.add(meal)
+    db.session.flush()
+
+    for item_name, item_count in content['meal_items']:
+        db.session.add(models.MealItems(item_name, meal.meal_id, item_count))
+
+    for tag_name in content['tagnames']:
+        db.session.add(models.MealTags(tag_name, meal.meal_id))
+
     db.session.commit()
     return jsonify({}), 201
+
+
+@app.route('/hcf/users/provider/meals/<string:mealname>', methods=['GET'])
+@auth.login_required
+def getmeal(mealname):
+    user_id = g.user.user_id
+    mealinfo_lst = models.Meal.query.filter_by(provider_id=user_id,
+                                               name=mealname)
+    if mealinfo_lst.count() == 0:
+        abort(404)
+
+    mealinfo = mealinfo_lst[0]
+    result = {"price": mealinfo.price, "max_count": mealinfo.max_count,
+              "date_time": mealinfo.date_time.strftime('%Y%m%d-%H%M%S')}
+    result["tagnames"] = [e.tag_name for e in mealinfo.tags]
+    result["meal_items"] = [[e.item_name, e.item_count] for e in mealinfo.items]
+    return jsonify(result), 201
+    
+
+@app.route('/hcf/users/provider/meals', methods=['GET'])
+@auth.login_required
+def listmeals():
+    user_id = g.user.user_id
+    mealinfo_lst = models.Meal.query.filter_by(provider_id=user_id)
+
+    result = []
+    for mealinfo in mealinfo_lst:
+        result.append(mealinfo.name)
+    return jsonify(result), 201
 
 
 @app.route('/hcf/getprovidersbyzipcode', methods=['GET'])
