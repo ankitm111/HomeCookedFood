@@ -1,11 +1,11 @@
+/*!
+ * Start Bootstrap - Small Business (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
 
-.nav-tabs {
-    margin-bottom: 15px;
-}
-
-.sign-with {
-    margin-top: 25px;
-    padding: 20px;
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
 
 .navbar-fixed-top .nav {
@@ -16,49 +16,8 @@
     padding: 0 15px;
 }
 
-.container > li {
-    padding-left: 50px;
-}
-
-.container li > a:hover {
-    text-decoration: underline;
-}
-
-.container a {
-    color: white;
-}
-
-input {
-    width: 100%;
-    height: 50px;
-}
-
-.searchsection {
-    width: 100%;
-    height: 40px;
-    margin: auto;
-    padding: 10px;
-    margin-left: 6%;
-
-}
-
-.foodsearch {
-    width: 50%;
-    height: 40px;
-    float: left;
-}
-
-.locsearch {
-    height: 40px;
-    width: 28%;
-    float: left;
-}
-
-.searchicon {
-    float: left;
-    height: 50px;*/
-    width: 5%;
-    background-color: red;
+li {
+    padding-left: 200px;
 }
 
 footer {
@@ -67,7 +26,7 @@ footer {
 
 @media(min-width:768px) {
     body {
-        /*padding-top: 100px; Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     }
 
     .navbar-fixed-top .navbar-brand {
