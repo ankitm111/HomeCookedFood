@@ -14,6 +14,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- font awesome -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">    
     <!-- Custom CSS -->
     <link href="css/index.css" rel="stylesheet">
 
@@ -26,115 +28,182 @@
 
 </head>
 
-<body>
+<body background="images/HomePageImage.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-xs-8">
+				<ul style="padding-left: 6%;" class="nav navbar-nav">
+	                <li>
+	                    <a>Write Review</a>
+	                </li>
+	                <li>
+	                    <a>Sell Meals</a>
+	                </li>
+	                <li>
+	                    <a>Cravings!</a>
+	                </li>
+	            </ul>	
+			</div>
+			<div class="col-lg-4 col-md-4 col-xs-4">
+				<ul style="padding-left: 35%;" class="nav navbar-nav">
+	                <li>
+						<button data-toggle="modal" data-target="#myModal" style="margin-top: 10px;" class="btn btn-default" type="submit">Login / Sign Up</button>
+	                </li>
+	            </ul>
+			</div>
+		</div>
+		<div style="margin-top: 15%;" class="row">
+			<section class="searchsection">
+				<div class="foodsearch">
+			  <!--<span class="fa fa-search"></span>-->
+				  <input type="text" style="font-weight: bold;" placeholder="Search Meals">
+				</div>
+				<div class="locsearch">
+				  <!--<span class="fa fa-search"></span>-->
+				  <input type="text" style="font-weight: bold;" placeholder="Near">
+				</div>
+				<div class="searchicon">
+					<span style="margin: 20px 20px;" class="fa fa-search"></span>
+				</div>	
+			</section>
+		</div>
+	</div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img HEIGHT="50" WIDTH="150" src="http://kingofspices.in/images/Spices.jpg" alt="">
-                </a>
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	    	<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Login/Registration</h4>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
 
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" onclick="load_contactus()">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href ="#" onclick="load_login()">Sign In</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="load_signup()">Sign Up</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Heading Row -->
-        <div class="row">
-            <div class="col-md-7">
-                <img class="img-responsive img-rounded" src="http://www.watscooking.com/images/dish/large/1371.jpg" alt="">
-            </div>
-            <!-- /.col-md-8 -->
-            <div class="col-md-5">
-                <h1>Home Cooked Food!!!</h1>
-                <h2>Fingers licking good....</h2>
-                <p>If you want to buy or sell tasty home cooked food, you are at the right spot. Feel free to take a look around....</p>
-                <!--<a class="btn btn-primary btn-lg" href="#">Call to Action!</a> -->
-            </div>
-            <!-- /.col-md-4 -->
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Call to Action Well -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="well text-center">
-                    For further details, please call us at 4087182413 or simple send us an email. We will be happy to help.....
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="nav active"><a href="#Login" role="tab" data-toggle="tab">Login</a></li>
+                            <li class="nav"><a href="#Registration" role="tab" data-toggle="tab">Registration</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                <form role="form" class="form-horizontal">
+	                                <div class="form-group">
+	                                    <label for="email" class="col-sm-2 control-label">
+	                                        Email</label>
+	                                    <div class="col-sm-10">
+	                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
+	                                        Password</label>
+	                                    <div class="col-sm-10">
+	                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+	                                    </div>
+	                                </div>
+	                                <div class="row">
+	                                    <div class="col-sm-2">
+	                                    </div>
+	                                    <div class="col-sm-10">
+	                                        <button type="submit" class="btn btn-primary btn-sm">
+	                                            Submit</button>
+	                                        <a href="javascript:;">Forgot your password?</a>
+	                                    </div>
+	                                </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="Registration">
+                                <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">
+                                        Name</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <select class="form-control">
+                                                    <option>Mr.</option>
+                                                    <option>Ms.</option>
+                                                    <option>Mrs.</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">
+                                        Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile" class="col-sm-2 control-label">
+                                        Mobile</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="mobile" placeholder="Mobile" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            Save & Continue</button>
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            Cancel</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--<div id="OR" class="hidden-xs">
+                            OR</div>-->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center sign-with">
+                            <div class="col-md-12">
+                                <h3>
+                                    Sign in with</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#" class="btn btn-primary">Facebook</a> <a href="#" class="btn btn-danger">
+                                        Google</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
 
-        <!-- Content Row -->
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Want to Sell Home Cooked Food.....</h2>
-                <p>If you want to bring out the chef inside you, this is the time. Simply sign in and start selling your handmade homecooked food. Sell how much ever you want to sell, on whichever day you want to sell.</p>
-                <a class="btn btn-default" href="#">More Info</a>
-            </div>
-            <!-- /.col-md-6 -->
-            <div class="col-md-6">
-                <h2>Want to Buy Home Cooked Food.....</h2>
-                <p>If you are bored of eating at the restaurants, but dont want to cook. This is the solution for you. You can eat tasty homecooked food prepared with love. Just sign up and connect with people in your area who are selling sumptuous food. We bet you will love it.</p>
-                <a class="btn btn-default" href="#">More Info</a>
-            </div>
-            <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
+	    </div>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Home Cooked Food 2017</p>
-                </div>
-            </div>
-        </footer>
+	  </div>
+	</div>
 
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
     <script src="js/index.js"></script>
-
 </body>
-
 </html>
