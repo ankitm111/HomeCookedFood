@@ -238,7 +238,7 @@
                                     <label class="col-sm-2 control-label">
                                         Meal Price</label>
                                     <div class="col-sm-10">
-                                        <input type="number" min="1" class="form-control" id="mealprice"/>
+                                        <input type="number" step="0.01" min="1" class="form-control" id="mealprice"/>
                                     </div>
                                 </div>
                             </form>
@@ -251,12 +251,27 @@
                                 <button type="button" class="btn btn-primary btn-sm" onclick="adddish()">
                                     +</button>  
                             </div>
-                            <div id="dishdiv">
+                            <div id="dishdiv" class="col-md-4 col-lg-4">
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Add Tags</label>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="addtag()">
+                                        +</button> 
+                            </div>
+                            <div id="tagsdiv" class="col-md-2 col-lg-2">
 
                             </div>
 
                         </div>  <!-- row -->
-                    </div> <!-- container -->
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="addmeal()">
+                                Add Meal</button> 
+                        </div>
+
+                    </div> <!-- container-fluid -->
                 </div> <!-- modal body -->
 
             </div> <!-- modal content -->    

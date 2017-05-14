@@ -16,9 +16,8 @@ function login() {
   		crossDomain: true,
 		success: function(data) {
 			console.log(data);
-			alert("Inside success");
 			localStorage.setItem("logintoken", data["token"]);
-			window.location.href="homepage.html";
+			showIndexPage();
 		},
 		error: function(xhr,err){
  		   alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
@@ -70,40 +69,47 @@ function addreview() {
 }
 
 ////////////////////////////////////////////////////////////////////////
-var next = 0;
+var nextDish = 0;
 
 function adddish() {
         event.preventDefault();
-        var addto = document.getElementById("dishdiv");
-        next = next + 1;
+        var dishdiv = document.getElementById("dishdiv");
+        nextDish = nextDish + 1;
+
+        var div = document.createElement("div");
+        div.id = "field_dishdiv" + nextDish;
+        div.class = "div";
 
         var input_dn = document.createElement("input");
         input_dn.autocomplete = "off";
+        input_dn.class = "input";
         input_dn.placeholder = "Dish name";
-        input_dn.id = "field_dishname" + next;
+        input_dn.id = "field_dishname" + nextDish;
         input_dn.type = "text";
-        addto.appendChild(input_dn);
+        div.appendChild(input_dn);
 
         var input_dq = document.createElement("input");
         input_dq.autocomplete = "off";
+        input_dq.class = "input";
         input_dq.type="number";
         input_dq.min = 1;
         input_dq.placeholder = "Dish quantity";
-        input_dq.id = "field_dishquantity" + next;
-        addto.appendChild(input_dq);
+        input_dq.id = "field_dishquantity" + nextDish;
+        div.appendChild(input_dq);
 
         var rem_btn = document.createElement("button");
-        rem_btn.class = "btn";
-        rem_btn.id = "b_rem" + next;
+        rem_btn.class = "btn btn-default";
+        rem_btn.id = "b_rem" + nextDish;
         rem_btn.innerHTML = "-";
-        rem_btn.onclick = remove;
+        rem_btn.onclick = removeDish;
+        div.appendChild(rem_btn); 
 
-        addto.appendChild(rem_btn);       
+        dishdiv.appendChild(div);
 
-        $("#count").val(next);
+        $("#count").val(nextDish);
 }
 
-function remove() {
+function removeDish() {
     event.preventDefault();
     // TODO: make sure that we extract the number from the end, currently this approach does
     // not work if we reach the id # 10 as we only look at the last character.
@@ -116,14 +122,104 @@ function remove() {
     $(fieldID_dishquantity).remove();
 }
 
+////////////////////////////////////////////////////////////////////////
 
-function addmeal() {
+var nextTag=0;
 
+function addtag() {
+        event.preventDefault();
+        var addto = document.getElementById("tagsdiv");
+        nextTag = nextTag + 1;
+
+        var input_dn = document.createElement("input");
+        input_dn.autocomplete = "off";
+        input_dn.class = "input";
+        input_dn.placeholder = "Tag name";
+        input_dn.id = "field_tagname" + nextTag;
+        input_dn.type = "text";
+        addto.appendChild(input_dn);
+
+        var rem_btn = document.createElement("button");
+        rem_btn.class = "btn btn-default";
+        rem_btn.id = "b_remtag" + nextTag;
+        rem_btn.innerHTML = "-";
+        rem_btn.onclick = removeTag;
+
+        addto.appendChild(rem_btn);       
+
+        $("#count").val(nextTag);
 }
 
+function removeTag() {
+    event.preventDefault();
+    // TODO: make sure that we extract the number from the end, currently this approach does
+    // not work if we reach the id # 10 as we only look at the last character.
+    var fieldNum = this.id.charAt(this.id.length - 1);
+    var fieldID_tagname = "#field_tagname" + fieldNum;
 
+    $(this).remove();
+    $(fieldID_tagname).remove();
+}
 
+///////////////////////////////////////////////////////////////////////////////
 
+function addmeal() {
+	event.preventDefault();
 
+	var mealname = $('#mealname').val();
+	var maxmeals = $('#maxmeals').val();
+	var mealprice = $('#mealprice').val();
+	var mealitems = [];
 
+	var dishes = document.getElementById('dishdiv').children;
+	for (var i = 0; i < dishes.length; i++) {
+		if (dishes[i].class == "div") {
+			var dish = dishes[i].children;
+			var dish_item = []
+			for (var j = 0; j < dish.length; j++) {
+				if (dish[j].class == "input") {
+					dish_item.push(dish[j].value);
+				}
+			}
+			mealitems.push(dish_item);
+		}
+	}
 
+	var tagnames = [];
+	var tags = document.getElementById("tagsdiv").children;
+	for (var i = 0; i < tags.length; i++) {
+		if (tags[i].class == "input") {
+			tagnames.push(tags[i].value);
+		}
+	}
+
+	// Convert mealitems array to dict
+	meal_items = {};
+	for (var i = 0; i < mealitems.length; i++) {
+		d = mealitems[i];
+		meal_items[d[0]] = d[1];
+	}
+
+	var Url = 'http://127.0.0.1:5000/hcf/users/provider/meals/'.concat(mealname);
+
+	$.ajax({
+		type: 'POST',
+		url: Url,
+		cache: false,
+		xhrFields: { withCredentials:true },
+		beforeSend: function(xhr){
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.getItem("logintoken") + ":unused"));
+        },
+		data: JSON.stringify({'price' : mealprice, 'max_count': maxmeals, 'meal_items': meal_items, 'tagnames': tagnames}),
+		contentType:"application/json; charset=utf-8",
+  		crossDomain: true,
+		success: function(data) {
+			showIndexPage();
+		},
+		error: function(xhr,err){
+ 		   alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+ 		   alert("responseText: "+xhr.responseText);
+		}
+	});
+
+}
