@@ -87,11 +87,19 @@ class Users(db.Model):
         s = Serializer(app.config['SECRET_KEY'])
         try:
             data = s.loads(token)
+            with open("/tmp/b", "a") as f:
+                f.write("Inside here %s\n" % data)
         except SignatureExpired:
+            with open("/tmp/b", "a") as f:
+                f.write("Signature has expired\n")
             return None  # valid token, but expired
-        except BadSignature:
+        except BadSignature as e:
+            with open("/tmp/b", "a") as f:
+                f.write("Signature is bad %s    Token: %s\n" % (e, token))
             return None  # invalid token
         user = Users.query.filter_by(user_id=data['user_id']).first()
+        with open("/tmp/b", "a") as f:
+            f.write("Successfully found user %s\n" % user)
         return user
 
 
