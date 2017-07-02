@@ -17,14 +17,37 @@ function login() {
 		success: function(data) {
 			console.log(data);
 			localStorage.setItem("logintoken", data["token"]);
-			showIndexPage();
+
+			$('#myModal').modal('toggle');
+
+			var loginButton = document.getElementById("login_logout");
+			loginButton.innerHTML='Logout';
+			loginButton.onclick = logout;
+
+			var namelabel = document.getElementById("namelabel");
+			namelabel.classList.remove("collapse");
+			namelabel.innerHTML = "Hello ".concat(data["name"]);
+
 		},
-		error: function(xhr,err){
- 		   alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
- 		   alert("responseText: "+xhr.responseText);
+		error: function(xhr,err) {
+ 		   alert("Failure");
  		   showIndexPage();
 		}
 	});
+}
+
+function logout() {
+
+	localStorage.setItem("logintoken", '');
+	var loginButton = document.getElementById("login_logout");
+	loginButton.innerHTML = "Login / Sign Up";
+	loginButton.onclick = null;
+
+	var namelabel = document.getElementById("namelabel");
+	namelabel.classList.add("collapse"); // hide it
+	namelabel.innerHTML = "";
+
+	showIndexPage();
 }
 
 
