@@ -47,10 +47,7 @@ curl -u ankitm112:python -i -X GET http://127.0.0.1:5000/hcf/users/getcurrentuse
 4) /addtiffin
 curl -u ankitm111@gmail.com:python -i -X POST -H "Content-Type: application/json" -d '{"tiffin_details" : {"chole":2, "bhature":2}}' http://127.0.0.1:5000/homecookedfood/addtiffin
 
-5) /getmealsbyzipcode
-curl -u ankitm111@gmail.com:python -i -X GET -H "Content-Type: application/json" -d '{"zipcode" : "95035"}' http://127.0.0.1:5000/homecookedfood/getmealsbyzipcode
-
-6)
+5)
 The database contains 3 providers. Onkar and Ankit are in San Jose. Sooraj is
 located in Seattle.
 
