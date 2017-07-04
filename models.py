@@ -22,7 +22,6 @@ class Users(db.Model):
     email_id = db.Column(db.String(40), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     phone_number = db.Column(db.String(11))
-    zipcode = db.Column(db.String(10))
     rating = db.Column(db.Float)
     num_ratings = db.Column(db.Integer)
     is_provider = db.Column(db.Boolean)
@@ -36,13 +35,12 @@ class Users(db.Model):
                                lazy='dynamic')
     '''
 
-    def __init__(self, username, name, email_id, phone_number, zipcode,
+    def __init__(self, username, name, email_id, phone_number,
                  longitude, latitude):
         self.username = username
         self.name = name
         self.email_id = email_id
         self.phone_number = phone_number
-        self.zipcode = zipcode
         self.rating = 0.0
         self.num_ratings = 0
         self.is_provider = False
@@ -76,7 +74,6 @@ class Users(db.Model):
                     name=self.name,
                     email_id=self.email_id,
                     phone_number=self.phone_number,
-                    zipcode=self.zipcode,
                     rating=self.rating,
                     num_ratings=self.num_ratings,
                     longitude=self.longitude,

@@ -80,7 +80,7 @@ def get_auth_token():
 
 
 @app.route('/hcf/users/<string:username>', methods=['POST'])
-@validate_json('name', 'email_id', 'password', 'phone', 'zipcode')
+@validate_json('name', 'email_id', 'password', 'phone')
 def adduser(username):
     content = request.json
     user = models.Users.query.filter(
@@ -92,8 +92,7 @@ def adduser(username):
 
     new_user = models.Users(username, content.get('name'),
                             content.get('email_id'), content.get('phone'),
-                            content.get('zipcode'), content.get('longitude'),
-                            content.get('latitude'))
+                            content.get('longitude'), content.get('latitude'))
     new_user.hash_password(content.get('password'))
     db.session.add(new_user)
     db.session.commit()
@@ -162,16 +161,6 @@ def listmeals():
     return jsonify(result), 201
 
 
-@app.route('/hcf/getprovidersbyzipcode', methods=['GET'])
-@auth.login_required
-@validate_json('zipcode')
-def getprovidersbyzipcode():
-    content = request.json
-    users = models.Users.query.filter_by(zipcode=content['zipcode'],
-                                         is_provider=True)
-    return jsonify({'list_of_providers': users}), 201
-
-
 @app.route('/hcf/getprovidersbycoordinates', methods=['GET'])
 @auth.login_required
 @validate_json('longitude', 'latitude')
@@ -223,20 +212,6 @@ def getmealsbyprovider():
     content = request.json
     user = models.Users.query.filter_by(user_id=content['provider_id']).first()
     return jsonify({'meals_by_provider': user.meals}), 201
-
-
-@app.route('/hcf/getmealsbyzipcode', methods=['GET'])
-@auth.login_required
-@validate_json('zipcode')
-def getmealsbyzipcode():
-    content = request.json
-    meals = []
-    users = models.Users.query.filter_by(zipcode=content['zipcode'])
-    for user in users:
-        list_of_meals_user = user.meals
-        for meal in list_of_meals_user:
-            meals.append(meal)
-    return jsonify({'list_of_meals': meals}), 201
 
 
 @app.route('/hcf/givecommenttoprovider', methods=['POST'])

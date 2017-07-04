@@ -59,7 +59,6 @@ function adduser() {
 	var password = $('#password').val();
 	var email = $('#email').val();
 	var phone = $('#mobile').val();
-	var zipcode = '95035';//$('#zipcode').val();
 	var Url = 'http://127.0.0.1:5000/hcf/users/'.concat(username);
 
 	$.ajax({
@@ -67,7 +66,7 @@ function adduser() {
 		url: Url,
 		cache: false,
 		data: JSON.stringify({'name' : name, 'password': password, 'email_id':email,
-			   'phone':phone, 'zipcode':zipcode, 'latitude':0, 'longitude':0}),
+			   'phone':phone, 'latitude':0, 'longitude':0}),
 		dataType: 'json',
 		contentType:"application/json; charset=utf-8",
   		crossDomain: true,
