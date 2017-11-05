@@ -1,0 +1,54 @@
+Steps to create local setup -
+
+1. Run setup-mac.sh on your Mac. We don't have steps to set up on Linux yet.
+   ./setup-mac --start
+   If you do not have postgres installed, this will fail and ask you to download
+   postgres app and configure it. Once it's installed, this script will
+   initialize database and start a flask server and a HTTP server on localhost.
+
+2. Run ./setup-mac --stop to stop everything.
+3. Following curl commands are for minimalistic testing and definitely can be
+improved later later on.
+
+$ /Applications/Postgres.app/Contents/Versions/9.6/bin/psql homecookedfood
+psql (9.6.2)
+Type "help" for help.
+
+homecookedfood=# select * from users;
+ user_id |  name  |      email_id       |                                                      password_hash                                                       | phone_number | is_provider | num_ratings | rating | username  | latitude  |  longitude
+---------+--------+---------------------+--------------------------------------------------------------------------------------------------------------------------+--------------+-------------+-------------+--------+-----------+-----------+-------------
+       1 | Ankit  | ankitm111@yahoo.com | $6$rounds=656000$W3Du/bJ9ajg0QsIH$MY2ObA.DYz/rohkv0/mIVvsrlOFaDFtLECjP1/GUL6ekpwBHo8t.RCLBIxRPS.6oywVQCSm/lRbYOMs5Q5uqF. | 4087182413   | t           |           0 |      0 | ankitm112 | 37.403812 | -121.932192
+       3 | Sooraj | sooraj@yahoo.com    | $6$rounds=656000$lpTrfqFIhHdKOCya$/ljgQ8m0kCAGBwpj.OZNOSeGLADANOlIbjt8hOXmCheDLXMwGhL3zSlcRv3296BSIsABcJFJMZX2jMSJvyASq. | 4087182413   | t           |           0 |      0 | sooraj    | 47.606209 | -122.332071
+       2 | onkar  | onkar@yahoo.com     | $6$rounds=656000$MntRkAOUx.nfh9oi$n6FHpmsrcVcjRVj2k6akF3Kc.xP.wcMnpDr34KxiejFfP2Ib4QdYToyjCcN3HDBoJS2zMxYtYjOacIvghCVCy. | 4087182413   | t           |           0 |      0 | onkar     | 37.406835 | -121.942035
+       4 | Teja   | teja@gmail.com      | $6$rounds=656000$iDNPipLFEzwnIIue$XnmY9yj107tcq0egUN.iR5YXLR43GXpnxeODrT26g4/521mMlTv5kQZVE1XJhTxOdHRNYw3sIwhJTzUHq3nie. | 4087181234   | f           |           0 |      0 | teja      |           |
+(4 rows)
+
+$ curl -u "ankitm112:python" -i -X GET -H "Content-Type: application/json" -d '{"longitude":"-121.899574", "latitude":"37.432334"}' http://127.0.0.1:5000/hcf/getprovidersbycoordinates
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Content-Length: 279
+Server: Werkzeug/0.12.1 Python/3.5.1
+Date: Sun, 05 Nov 2017 22:57:46 GMT
+
+{
+  "list_of_providers": [
+    [
+      "Ankit",
+      "4087182413",
+      0.0,
+      0,
+      "ankitm111@yahoo.com",
+      2.65862604646254
+    ],
+    [
+      "onkar",
+      "4087182413",
+      0.0,
+      0,
+      "onkar@yahoo.com",
+      2.91718066530425
+    ]
+  ]
+}
