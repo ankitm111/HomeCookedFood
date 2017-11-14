@@ -44,8 +44,8 @@ curl -u ankitm111@gmail.com:python -i -X GET http://127.0.0.1:5000/homecookedfoo
 3) /hcf/users/getcurrentuser
 curl -u ankitm112:python -i -X GET http://127.0.0.1:5000/hcf/users/getcurrentuser
 
-4) /addtiffin
-curl -u ankitm111@gmail.com:python -i -X POST -H "Content-Type: application/json" -d '{"tiffin_details" : {"chole":2, "bhature":2}}' http://127.0.0.1:5000/homecookedfood/addtiffin
+4) /createmeal
+ curl -u ankitm112:python -i -X POST -H "Content-Type: application/json" -d '{"price": 10, "tagnames" : "dal,tadka", "meal_items" : {"chole":2, "bhature":2}}' http://127.0.0.1:5000/hcf/users/provider/meals/awesomedinner_Ankit
 
 5)
 The database contains 3 providers. Onkar and Ankit are in San Jose. Sooraj is

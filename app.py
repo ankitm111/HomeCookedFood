@@ -107,25 +107,23 @@ def getcurrentuser():
 
 @app.route('/hcf/users/provider/meals/<string:mealname>', methods=['POST'])
 @auth.login_required
-@validate_json('price', 'tagnames', 'max_count', 'meal_items')
+#@validate_json('price', 'tagnames', 'max_count', 'meal_items')
+#@validate_json('price', 'tagnames', 'meal_items')
 def createmeal(mealname):
     content = request.json
     user_id = g.user.user_id
     date_time = content.get('date_time', datetime.now().strftime('%Y%m%d-%H%M%S'))
     meal = models.Meal(mealname, user_id, content['price'],
-                       max_count=content['max_count'],
+                       max_count=0,
                        date_time=date_time)
     db.session.add(meal)
     db.session.flush()
 
-    with open("/tmp/a", "a") as f:
-        f.write("Meal items %s    %s\n" % (type(content['meal_items']), content['meal_items']))
-
     for item_name, item_count in content['meal_items'].iteritems():
         db.session.add(models.MealItems(item_name, meal.meal_id, item_count))
 
-    for tag_name in content['tagnames']:
-        db.session.add(models.MealTags(tag_name, meal.meal_id))
+    #for tag_name in content['tagnames']:
+    db.session.add(models.MealTags(content['tagnames'], meal.meal_id))
 
     db.session.commit()
     print("Meal added successfully")
