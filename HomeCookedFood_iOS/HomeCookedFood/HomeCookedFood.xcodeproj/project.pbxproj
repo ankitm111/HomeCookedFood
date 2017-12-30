@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		333C8C911FE8E40300B268FB /* BuyerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */; };
+		3351820C1FB18AA2000E457B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351820B1FB18AA2000E457B /* AppDelegate.swift */; };
+		3351820E1FB18AA2000E457B /* SellerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351820D1FB18AA2000E457B /* SellerTableViewController.swift */; };
+		335182101FB18AA2000E457B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351820F1FB18AA2000E457B /* DetailViewController.swift */; };
+		335182131FB18AA2000E457B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335182111FB18AA2000E457B /* Main.storyboard */; };
+		335182151FB18AA2000E457B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335182141FB18AA2000E457B /* Assets.xcassets */; };
+		335182181FB18AA2000E457B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335182161FB18AA2000E457B /* LaunchScreen.storyboard */; };
+		335182211FB1903B000E457B /* SellerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351821F1FB1903B000E457B /* SellerDetailViewController.swift */; };
+		335182221FB1903B000E457B /* SellerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 335182201FB1903B000E457B /* SellerDetailViewController.xib */; };
+		335182241FB1A3B9000E457B /* SellerDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335182231FB1A3B9000E457B /* SellerDataViewModel.swift */; };
+		33D1DC4F1FC3B5E500C549BD /* SellerTableTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */; };
+		33D1DC511FC3CD7500C549BD /* SellerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC501FC3CD7500C549BD /* SellerViewModel.swift */; };
+		33D1DC551FC3D3A900C549BD /* OrderDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC541FC3D3A900C549BD /* OrderDateViewModel.swift */; };
+		33D1DC5E1FC3ECA400C549BD /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC5C1FC3ECA400C549BD /* OrderTableViewCell.swift */; };
+		33D1DC631FE1077000C549BD /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC621FE1077000C549BD /* LandingPageViewController.swift */; };
+		33D1DC671FE4762F00C549BD /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D1DC661FE4762F00C549BD /* OrderTableViewCell.xib */; };
+		33DBFF7E1FBAB6BF00F3EDFA /* SellerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DBFF7C1FBAB6BF00F3EDFA /* SellerTableViewCell.swift */; };
+		33DBFF7F1FBAB6BF00F3EDFA /* SellerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DBFF7D1FBAB6BF00F3EDFA /* SellerTableViewCell.xib */; };
+		33FF7BB31FF72D7D003CA19F /* SearchFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF7BB21FF72D7D003CA19F /* SearchFooter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSearchViewController.swift; sourceTree = "<group>"; };
+		335182081FB18AA2000E457B /* HomeCookedFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeCookedFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3351820B1FB18AA2000E457B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3351820D1FB18AA2000E457B /* SellerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerTableViewController.swift; sourceTree = "<group>"; };
+		3351820F1FB18AA2000E457B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		335182121FB18AA2000E457B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		335182141FB18AA2000E457B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		335182171FB18AA2000E457B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		335182191FB18AA2000E457B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3351821F1FB1903B000E457B /* SellerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewController.swift; sourceTree = "<group>"; };
+		335182201FB1903B000E457B /* SellerDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerDetailViewController.xib; sourceTree = "<group>"; };
+		335182231FB1A3B9000E457B /* SellerDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDataViewModel.swift; sourceTree = "<group>"; };
+		33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerTableTypeProtocol.swift; sourceTree = "<group>"; };
+		33D1DC501FC3CD7500C549BD /* SellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewModel.swift; sourceTree = "<group>"; };
+		33D1DC541FC3D3A900C549BD /* OrderDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDateViewModel.swift; sourceTree = "<group>"; };
+		33D1DC5C1FC3ECA400C549BD /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		33D1DC621FE1077000C549BD /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		33D1DC661FE4762F00C549BD /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		33DBFF7C1FBAB6BF00F3EDFA /* SellerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerTableViewCell.swift; sourceTree = "<group>"; };
+		33DBFF7D1FBAB6BF00F3EDFA /* SellerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerTableViewCell.xib; sourceTree = "<group>"; };
+		33FF7BB21FF72D7D003CA19F /* SearchFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		335182051FB18AA2000E457B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		333C8C8F1FE8D94B00B268FB /* Seller detail */ = {
+			isa = PBXGroup;
+			children = (
+				335182201FB1903B000E457B /* SellerDetailViewController.xib */,
+				3351821F1FB1903B000E457B /* SellerDetailViewController.swift */,
+			);
+			path = "Seller detail";
+			sourceTree = "<group>";
+		};
+		335181FF1FB18AA2000E457B = {
+			isa = PBXGroup;
+			children = (
+				3351820A1FB18AA2000E457B /* HomeCookedFood */,
+				335182091FB18AA2000E457B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		335182091FB18AA2000E457B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				335182081FB18AA2000E457B /* HomeCookedFood.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3351820A1FB18AA2000E457B /* HomeCookedFood */ = {
+			isa = PBXGroup;
+			children = (
+				335182141FB18AA2000E457B /* Assets.xcassets */,
+				335182191FB18AA2000E457B /* Info.plist */,
+				335182161FB18AA2000E457B /* LaunchScreen.storyboard */,
+				33D1DC621FE1077000C549BD /* LandingPageViewController.swift */,
+				3351820B1FB18AA2000E457B /* AppDelegate.swift */,
+				3351820F1FB18AA2000E457B /* DetailViewController.swift */,
+				3351820D1FB18AA2000E457B /* SellerTableViewController.swift */,
+				33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */,
+				335182231FB1A3B9000E457B /* SellerDataViewModel.swift */,
+				335182111FB18AA2000E457B /* Main.storyboard */,
+				333C8C8F1FE8D94B00B268FB /* Seller detail */,
+				33D1DC581FC3E83500C549BD /* SellerViewModel */,
+				33D1DC591FC3E85A00C549BD /* OrderViewModel */,
+				333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */,
+				33FF7BB21FF72D7D003CA19F /* SearchFooter.swift */,
+			);
+			path = HomeCookedFood;
+			sourceTree = "<group>";
+		};
+		33D1DC581FC3E83500C549BD /* SellerViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				33D1DC501FC3CD7500C549BD /* SellerViewModel.swift */,
+				33DBFF7C1FBAB6BF00F3EDFA /* SellerTableViewCell.swift */,
+				33DBFF7D1FBAB6BF00F3EDFA /* SellerTableViewCell.xib */,
+			);
+			path = SellerViewModel;
+			sourceTree = "<group>";
+		};
+		33D1DC591FC3E85A00C549BD /* OrderViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				33D1DC541FC3D3A900C549BD /* OrderDateViewModel.swift */,
+				33D1DC5C1FC3ECA400C549BD /* OrderTableViewCell.swift */,
+				33D1DC661FE4762F00C549BD /* OrderTableViewCell.xib */,
+			);
+			path = OrderViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		335182071FB18AA2000E457B /* HomeCookedFood */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3351821C1FB18AA2000E457B /* Build configuration list for PBXNativeTarget "HomeCookedFood" */;
+			buildPhases = (
+				335182041FB18AA2000E457B /* Sources */,
+				335182051FB18AA2000E457B /* Frameworks */,
+				335182061FB18AA2000E457B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HomeCookedFood;
+			productName = HomeCookedFood;
+			productReference = 335182081FB18AA2000E457B /* HomeCookedFood.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		335182001FB18AA2000E457B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Arpit Mehta";
+				TargetAttributes = {
+					335182071FB18AA2000E457B = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 335182031FB18AA2000E457B /* Build configuration list for PBXProject "HomeCookedFood" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 335181FF1FB18AA2000E457B;
+			productRefGroup = 335182091FB18AA2000E457B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				335182071FB18AA2000E457B /* HomeCookedFood */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		335182061FB18AA2000E457B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D1DC671FE4762F00C549BD /* OrderTableViewCell.xib in Resources */,
+				335182221FB1903B000E457B /* SellerDetailViewController.xib in Resources */,
+				335182181FB18AA2000E457B /* LaunchScreen.storyboard in Resources */,
+				335182151FB18AA2000E457B /* Assets.xcassets in Resources */,
+				33DBFF7F1FBAB6BF00F3EDFA /* SellerTableViewCell.xib in Resources */,
+				335182131FB18AA2000E457B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		335182041FB18AA2000E457B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33DBFF7E1FBAB6BF00F3EDFA /* SellerTableViewCell.swift in Sources */,
+				33D1DC511FC3CD7500C549BD /* SellerViewModel.swift in Sources */,
+				33D1DC551FC3D3A900C549BD /* OrderDateViewModel.swift in Sources */,
+				33FF7BB31FF72D7D003CA19F /* SearchFooter.swift in Sources */,
+				335182211FB1903B000E457B /* SellerDetailViewController.swift in Sources */,
+				335182101FB18AA2000E457B /* DetailViewController.swift in Sources */,
+				33D1DC5E1FC3ECA400C549BD /* OrderTableViewCell.swift in Sources */,
+				3351820E1FB18AA2000E457B /* SellerTableViewController.swift in Sources */,
+				335182241FB1A3B9000E457B /* SellerDataViewModel.swift in Sources */,
+				3351820C1FB18AA2000E457B /* AppDelegate.swift in Sources */,
+				33D1DC4F1FC3B5E500C549BD /* SellerTableTypeProtocol.swift in Sources */,
+				333C8C911FE8E40300B268FB /* BuyerSearchViewController.swift in Sources */,
+				33D1DC631FE1077000C549BD /* LandingPageViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		335182111FB18AA2000E457B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				335182121FB18AA2000E457B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		335182161FB18AA2000E457B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				335182171FB18AA2000E457B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3351821A1FB18AA2000E457B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3351821B1FB18AA2000E457B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3351821D1FB18AA2000E457B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38TM4ZSJA5;
+				INFOPLIST_FILE = HomeCookedFood/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Culinary.HomeCookedFood;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3351821E1FB18AA2000E457B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38TM4ZSJA5;
+				INFOPLIST_FILE = HomeCookedFood/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Culinary.HomeCookedFood;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		335182031FB18AA2000E457B /* Build configuration list for PBXProject "HomeCookedFood" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3351821A1FB18AA2000E457B /* Debug */,
+				3351821B1FB18AA2000E457B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3351821C1FB18AA2000E457B /* Build configuration list for PBXNativeTarget "HomeCookedFood" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3351821D1FB18AA2000E457B /* Debug */,
+				3351821E1FB18AA2000E457B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 335182001FB18AA2000E457B /* Project object */;
+}
