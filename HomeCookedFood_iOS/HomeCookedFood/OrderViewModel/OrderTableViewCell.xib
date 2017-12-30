@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="275" id="y39-2H-G3f" customClass="OrderTableViewCell" customModule="HomeCookedFood" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="846" height="275"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y39-2H-G3f" id="qo9-rP-gDp">
+                <rect key="frame" x="0.0" y="0.0" width="846" height="274.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order By: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZP-Jd-AQS">
+                        <rect key="frame" x="42" y="50.5" width="780" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="ntw-Ec-YBl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick up by: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DC-10-OR9">
+                        <rect key="frame" x="42" y="114" width="780" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="aG2-7x-zZV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJQ-fg-j1Y">
+                        <rect key="frame" x="42" y="185.5" width="780" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0DC-10-OR9" firstAttribute="leading" secondItem="qo9-rP-gDp" secondAttribute="leading" constant="42" id="530-zi-ca9"/>
+                    <constraint firstAttribute="bottom" secondItem="uJQ-fg-j1Y" secondAttribute="bottom" constant="46.5" id="Dh6-Bg-mV5"/>
+                    <constraint firstAttribute="trailing" secondItem="0DC-10-OR9" secondAttribute="trailing" constant="24" id="JuI-aX-fVF"/>
+                    <constraint firstItem="0DC-10-OR9" firstAttribute="top" secondItem="gZP-Jd-AQS" secondAttribute="bottom" constant="22" id="LmT-7l-OPN"/>
+                    <constraint firstItem="uJQ-fg-j1Y" firstAttribute="leading" secondItem="qo9-rP-gDp" secondAttribute="leading" constant="42" id="Ymf-Pd-40R"/>
+                    <constraint firstAttribute="trailing" secondItem="gZP-Jd-AQS" secondAttribute="trailing" constant="24" id="bJN-KW-v1a"/>
+                    <constraint firstAttribute="trailing" secondItem="uJQ-fg-j1Y" secondAttribute="trailing" constant="24" id="biw-aH-XPR"/>
+                    <constraint firstItem="uJQ-fg-j1Y" firstAttribute="top" secondItem="0DC-10-OR9" secondAttribute="bottom" constant="29" id="eva-6f-U1g"/>
+                    <constraint firstItem="uJQ-fg-j1Y" firstAttribute="top" secondItem="0DC-10-OR9" secondAttribute="bottom" constant="29.5" id="fwP-Vz-DwJ"/>
+                    <constraint firstItem="gZP-Jd-AQS" firstAttribute="leading" secondItem="qo9-rP-gDp" secondAttribute="leading" constant="42" id="g15-bA-5dg"/>
+                    <constraint firstItem="0DC-10-OR9" firstAttribute="top" secondItem="gZP-Jd-AQS" secondAttribute="bottom" constant="22" id="nWK-35-9aP"/>
+                    <constraint firstItem="gZP-Jd-AQS" firstAttribute="top" secondItem="qo9-rP-gDp" secondAttribute="top" constant="50.5" id="tPU-tn-NkG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="costLabel" destination="uJQ-fg-j1Y" id="o1O-CM-frD"/>
+                <outlet property="orderByLabel" destination="gZP-Jd-AQS" id="bLz-3t-iOe"/>
+                <outlet property="pickupDateLabel" destination="0DC-10-OR9" id="IPb-Gj-V9G"/>
+            </connections>
+            <point key="canvasLocation" x="-168" y="3.5"/>
+        </tableViewCell>
+    </objects>
+</document>
