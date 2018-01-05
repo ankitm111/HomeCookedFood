@@ -1,9 +1,0 @@
-#submitmeal {
-  visibility: hidden;
-  display: none;
-}
-
-#adddish {
-  visibility: hidden;
-  display: none;
-}

@@ -84,19 +84,11 @@ class Users(db.Model):
         s = Serializer(app.config['SECRET_KEY'])
         try:
             data = s.loads(token)
-            with open("/tmp/b", "a") as f:
-                f.write("Inside here %s\n" % data)
         except SignatureExpired:
-            with open("/tmp/b", "a") as f:
-                f.write("Signature has expired\n")
             return None  # valid token, but expired
         except BadSignature as e:
-            with open("/tmp/b", "a") as f:
-                f.write("Signature is bad %s    Token: %s\n" % (e, token))
             return None  # invalid token
         user = Users.query.filter_by(user_id=data['user_id']).first()
-        with open("/tmp/b", "a") as f:
-            f.write("Successfully found user %s\n" % user)
         return user
 
 
@@ -107,40 +99,43 @@ class Meal(db.Model):
     meal_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     provider_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    price = db.Column(db.Integer)
-    max_count = db.Column(db.Integer)
-    date_time = db.Column(db.DateTime)
+    price = db.Column(db.Float)
+    #max_count = db.Column(db.Integer)
+    date_time_pickup = db.Column(db.DateTime)
+    date_time_last_order = db.Column(db.DateTime)
     items = db.relationship('MealItems', lazy='dynamic')
-    tags = db.relationship('MealTags', lazy='dynamic')
+    #tags = db.relationship('MealTags', lazy='dynamic')
 
-    def __init__(self, name, provider_id, price, max_count,
-                 date_time):
+    def __init__(self, name, provider_id, price,
+                 date_time_pickup, date_time_last_order):
         self.provider_id = provider_id
         self.name = name
         self.price = price
-        self.max_count = max_count
-        self.date_time = datetime.strptime(date_time,
-                                           '%Y%m%d-%H%M%S')
+        #self.max_count = max_count
+        self.date_time_pickup = date_time_pickup
+        self.date_time_last_order = date_time_last_order
 
     def __repr__(self):
         return '<name {}>'.format(self.name)
-
 
 class MealItems(db.Model):
     __tablename__ = 'mealitems'
     item_name = db.Column(db.String(128), primary_key=True)
     meal_id = db.Column(db.Integer, db.ForeignKey('meal.meal_id'),
                         primary_key=True)
-    item_count = db.Column(db.Integer)
+    #item_count = db.Column(db.Integer)
 
-    def __init__(self, item_name, meal_id, item_count):
+    def __init__(self, item_name, meal_id):
         self.item_name = item_name
         self.meal_id = meal_id
-        self.item_count = item_count
+        #self.item_count = item_count
 
     def __repr__(self):
         return '<item_name {}>'.format(self.item_name)
 
+
+# For now, commenting the Tags
+"""
 class MealTags(db.Model):
     __tablename__ = 'mealtags'
     # XXX Maybe we need a separate tag table and this should be tag id.
@@ -154,7 +149,7 @@ class MealTags(db.Model):
 
     def __repr__(self):
         return '<tag_name {}>'.format(self.tag_name)
-
+"""
 
 class Comments(db.Model):
     __tablename__ = 'comments'
