@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161529CC115D946C7E52D005 /* Pods_HomeCookedFood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8620FFB111BD1D6892591D /* Pods_HomeCookedFood.framework */; };
 		333C8C911FE8E40300B268FB /* BuyerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */; };
 		3351820C1FB18AA2000E457B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351820B1FB18AA2000E457B /* AppDelegate.swift */; };
 		3351820E1FB18AA2000E457B /* SellerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351820D1FB18AA2000E457B /* SellerTableViewController.swift */; };
@@ -17,6 +18,7 @@
 		335182211FB1903B000E457B /* SellerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351821F1FB1903B000E457B /* SellerDetailViewController.swift */; };
 		335182221FB1903B000E457B /* SellerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 335182201FB1903B000E457B /* SellerDetailViewController.xib */; };
 		335182241FB1A3B9000E457B /* SellerDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335182231FB1A3B9000E457B /* SellerDataViewModel.swift */; };
+		33D121922005E89900C32C1D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D121912005E89900C32C1D /* LoginViewController.swift */; };
 		33D1DC4F1FC3B5E500C549BD /* SellerTableTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */; };
 		33D1DC511FC3CD7500C549BD /* SellerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC501FC3CD7500C549BD /* SellerViewModel.swift */; };
 		33D1DC551FC3D3A900C549BD /* OrderDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1DC541FC3D3A900C549BD /* OrderDateViewModel.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14903DA78288B32A934D7B82 /* Pods-HomeCookedFood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeCookedFood.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeCookedFood/Pods-HomeCookedFood.release.xcconfig"; sourceTree = "<group>"; };
+		16DE6D035B3D5B705CCA27FF /* Pods-HomeCookedFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeCookedFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HomeCookedFood/Pods-HomeCookedFood.debug.xcconfig"; sourceTree = "<group>"; };
 		333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSearchViewController.swift; sourceTree = "<group>"; };
 		335182081FB18AA2000E457B /* HomeCookedFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeCookedFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3351820B1FB18AA2000E457B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,7 @@
 		3351821F1FB1903B000E457B /* SellerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewController.swift; sourceTree = "<group>"; };
 		335182201FB1903B000E457B /* SellerDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerDetailViewController.xib; sourceTree = "<group>"; };
 		335182231FB1A3B9000E457B /* SellerDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDataViewModel.swift; sourceTree = "<group>"; };
+		33D121912005E89900C32C1D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerTableTypeProtocol.swift; sourceTree = "<group>"; };
 		33D1DC501FC3CD7500C549BD /* SellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewModel.swift; sourceTree = "<group>"; };
 		33D1DC541FC3D3A900C549BD /* OrderDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDateViewModel.swift; sourceTree = "<group>"; };
@@ -50,6 +55,7 @@
 		33DBFF7C1FBAB6BF00F3EDFA /* SellerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerTableViewCell.swift; sourceTree = "<group>"; };
 		33DBFF7D1FBAB6BF00F3EDFA /* SellerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerTableViewCell.xib; sourceTree = "<group>"; };
 		33FF7BB21FF72D7D003CA19F /* SearchFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
+		3A8620FFB111BD1D6892591D /* Pods_HomeCookedFood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeCookedFood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161529CC115D946C7E52D005 /* Pods_HomeCookedFood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +84,8 @@
 			children = (
 				3351820A1FB18AA2000E457B /* HomeCookedFood */,
 				335182091FB18AA2000E457B /* Products */,
+				76D161141C505E6B02D48417 /* Pods */,
+				43B60BED40A174579CC5528F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,23 +100,32 @@
 		3351820A1FB18AA2000E457B /* HomeCookedFood */ = {
 			isa = PBXGroup;
 			children = (
+				33D1219320060A8300C32C1D /* Storyboards */,
 				335182141FB18AA2000E457B /* Assets.xcassets */,
 				335182191FB18AA2000E457B /* Info.plist */,
-				335182161FB18AA2000E457B /* LaunchScreen.storyboard */,
 				33D1DC621FE1077000C549BD /* LandingPageViewController.swift */,
 				3351820B1FB18AA2000E457B /* AppDelegate.swift */,
 				3351820F1FB18AA2000E457B /* DetailViewController.swift */,
 				3351820D1FB18AA2000E457B /* SellerTableViewController.swift */,
 				33D1DC4E1FC3B5E500C549BD /* SellerTableTypeProtocol.swift */,
 				335182231FB1A3B9000E457B /* SellerDataViewModel.swift */,
-				335182111FB18AA2000E457B /* Main.storyboard */,
 				333C8C8F1FE8D94B00B268FB /* Seller detail */,
 				33D1DC581FC3E83500C549BD /* SellerViewModel */,
 				33D1DC591FC3E85A00C549BD /* OrderViewModel */,
 				333C8C901FE8E40300B268FB /* BuyerSearchViewController.swift */,
 				33FF7BB21FF72D7D003CA19F /* SearchFooter.swift */,
+				33D121912005E89900C32C1D /* LoginViewController.swift */,
 			);
 			path = HomeCookedFood;
+			sourceTree = "<group>";
+		};
+		33D1219320060A8300C32C1D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				335182161FB18AA2000E457B /* LaunchScreen.storyboard */,
+				335182111FB18AA2000E457B /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		33D1DC581FC3E83500C549BD /* SellerViewModel */ = {
@@ -130,6 +148,23 @@
 			path = OrderViewModel;
 			sourceTree = "<group>";
 		};
+		43B60BED40A174579CC5528F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A8620FFB111BD1D6892591D /* Pods_HomeCookedFood.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76D161141C505E6B02D48417 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				16DE6D035B3D5B705CCA27FF /* Pods-HomeCookedFood.debug.xcconfig */,
+				14903DA78288B32A934D7B82 /* Pods-HomeCookedFood.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3351821C1FB18AA2000E457B /* Build configuration list for PBXNativeTarget "HomeCookedFood" */;
 			buildPhases = (
+				463BE975A9C3E8C2B70DF67F /* [CP] Check Pods Manifest.lock */,
 				335182041FB18AA2000E457B /* Sources */,
 				335182051FB18AA2000E457B /* Frameworks */,
 				335182061FB18AA2000E457B /* Resources */,
+				63B74CA4A24225541E04A091 /* [CP] Embed Pods Frameworks */,
+				D064BACF75FF2F952C8302CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,11 +238,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		463BE975A9C3E8C2B70DF67F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HomeCookedFood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63B74CA4A24225541E04A091 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HomeCookedFood/Pods-HomeCookedFood-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HomeCookedFood/Pods-HomeCookedFood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D064BACF75FF2F952C8302CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HomeCookedFood/Pods-HomeCookedFood-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		335182041FB18AA2000E457B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D121922005E89900C32C1D /* LoginViewController.swift in Sources */,
 				33DBFF7E1FBAB6BF00F3EDFA /* SellerTableViewCell.swift in Sources */,
 				33D1DC511FC3CD7500C549BD /* SellerViewModel.swift in Sources */,
 				33D1DC551FC3D3A900C549BD /* OrderDateViewModel.swift in Sources */,
@@ -352,6 +449,7 @@
 		};
 		3351821D1FB18AA2000E457B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16DE6D035B3D5B705CCA27FF /* Pods-HomeCookedFood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -367,6 +465,7 @@
 		};
 		3351821E1FB18AA2000E457B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14903DA78288B32A934D7B82 /* Pods-HomeCookedFood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

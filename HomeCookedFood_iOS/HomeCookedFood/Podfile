@@ -1,0 +1,13 @@
+platform :ios, '11.0'
+
+
+target 'HomeCookedFood' do
+  use_frameworks!
+
+  # Pods for HomeCookedFood
+  # pod 'Firebase/Core'
+  # pod 'Firebase/Firestore'
+  pod 'FBSDKLoginKit'
+
+
+end

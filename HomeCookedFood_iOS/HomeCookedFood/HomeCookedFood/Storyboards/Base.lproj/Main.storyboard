@@ -13,18 +13,18 @@
         <!--Navigation Controller-->
         <scene sceneID="hnD-C1-gKr">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pZm-GL-pfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="vE0-yx-LJN" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Rp-aN-LB9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Lps-OL-8Np" kind="relationship" relationship="rootViewController" id="oh3-Pf-9OA"/>
+                        <segue destination="KCH-u9-Lsu" kind="relationship" relationship="rootViewController" id="Mkq-4y-xG0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pZm-GL-pfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2225" y="-1273"/>
+            <point key="canvasLocation" x="-3999" y="-1499"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="rSs-7M-GYc">
@@ -49,7 +49,7 @@
                                 <state key="normal" title="Seller Page"/>
                                 <connections>
                                     <action selector="onSellerButtonTapped:" destination="Lps-OL-8Np" eventType="touchUpInside" id="2tP-8W-zUY"/>
-                                    <segue destination="RMx-3f-FxP" kind="showDetail" identifier="showSellerPage" id="Esb-uZ-MEd"/>
+                                    <segue destination="7bK-jq-Zjz" kind="show" identifier="showSellerPage" id="2lU-7Z-iJR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -60,7 +60,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pkd-D2-5bk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1471.2" y="-1278.7106446776613"/>
+            <point key="canvasLocation" x="-1233" y="-2203"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Pi7-MC-CVZ">
+            <objects>
+                <navigationController id="3Jg-Dg-3xr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fpW-rf-CE3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Lps-OL-8Np" kind="relationship" relationship="rootViewController" id="b1w-hJ-Kqe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PCv-nR-zAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2065" y="-2203"/>
         </scene>
         <!--Buyer Search View Controller-->
         <scene sceneID="5qt-1T-ha8">
@@ -88,7 +104,7 @@
                                     <outlet property="delegate" destination="CNC-ZH-q6k" id="XOu-7m-pUY"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I14-bf-7op" customClass="SearchFooter" customModule="CandySearch" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I14-bf-7op" customClass="SearchFooter" customModule="HomeCookedFood" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -103,7 +119,7 @@
                             <constraint firstItem="avK-gA-h7n" firstAttribute="trailing" secondItem="I14-bf-7op" secondAttribute="trailing" id="IlD-ax-gQu"/>
                             <constraint firstItem="avK-gA-h7n" firstAttribute="leading" secondItem="I14-bf-7op" secondAttribute="leading" id="Kl9-Um-3cN"/>
                             <constraint firstItem="avK-gA-h7n" firstAttribute="leading" secondItem="kRA-oP-BnY" secondAttribute="leading" id="SSJ-jL-sn6"/>
-                            <constraint firstItem="avK-gA-h7n" firstAttribute="bottom" secondItem="I14-bf-7op" secondAttribute="bottom" constant="20" symbolic="YES" id="lfH-Nn-HBv"/>
+                            <constraint firstItem="avK-gA-h7n" firstAttribute="bottom" secondItem="I14-bf-7op" secondAttribute="bottom" symbolic="YES" id="lfH-Nn-HBv"/>
                             <constraint firstAttribute="trailing" secondItem="avK-gA-h7n" secondAttribute="trailing" id="rPQ-lp-QU0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="84u-d1-xcE"/>
@@ -132,23 +148,26 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-421.60000000000002" y="-1279.6101949025488"/>
+            <point key="canvasLocation" x="-38" y="-2203"/>
         </scene>
-        <!--Seller-->
-        <scene sceneID="pY4-Hu-kfo">
+        <!--Login page-->
+        <scene sceneID="Ykb-XH-dfO">
             <objects>
-                <navigationController title="Seller" id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
+                <viewController id="KCH-u9-Lsu" userLabel="Login page" customClass="LoginViewController" customModule="HomeCookedFood" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WOG-gb-p9r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="C1G-E7-Ofv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dyE-RU-xBE"/>
                     <connections>
-                        <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
+                        <segue destination="3Jg-Dg-3xr" kind="presentation" identifier="showLandingPage" id="qna-6X-Tfh"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cNx-vc-LTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1471" y="-387"/>
+            <point key="canvasLocation" x="-3044" y="-1499"/>
         </scene>
         <!--Detail-->
         <scene sceneID="yUG-lL-AsK">
@@ -182,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="316" y="435"/>
+            <point key="canvasLocation" x="858" y="-1231"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -195,7 +214,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3066" y="-1273"/>
+            <point key="canvasLocation" x="-4889" y="-1499"/>
         </scene>
         <!--Seller-->
         <scene sceneID="smW-Zh-WAh">
@@ -241,13 +260,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-590" y="-387"/>
+            <point key="canvasLocation" x="-1234" y="-1231"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -256,7 +276,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591" y="435"/>
+            <point key="canvasLocation" x="-231" y="-1231"/>
         </scene>
     </scenes>
 </document>
